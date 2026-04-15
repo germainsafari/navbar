@@ -2,19 +2,11 @@
 
 import { useState } from "react";
 
-const WEBAPP_URL = "https://transportationsolutions.abb.com/";
-const ABB_GLOBAL_URL = "https://www.abb.com/global/en";
-
 type Destination = "webapp" | "abb-global";
-
-const destinations: Record<Destination, string> = {
-  webapp: WEBAPP_URL,
-  "abb-global": ABB_GLOBAL_URL,
-};
 
 export function PortalView() {
   const [active, setActive] = useState<Destination>("webapp");
-  const src = destinations[active];
+  const src = `/api/proxy/${active}/`;
 
   return (
     <div className="flex h-dvh min-h-0 flex-col bg-zinc-200">
