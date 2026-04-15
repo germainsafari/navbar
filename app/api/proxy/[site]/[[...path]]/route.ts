@@ -125,7 +125,7 @@ export async function GET(
     const isHtml = contentType.includes("text/html");
 
     if (!isHtml) {
-      const res = new NextResponse(upstream.body, { status: upstream.status });
+      const res = new NextResponse(new Uint8Array(upstream.body), { status: upstream.status });
       for (const [key, value] of Object.entries(upstream.headers)) {
         if (value && !STRIP_HEADERS.has(key.toLowerCase())) {
           res.headers.set(key, Array.isArray(value) ? value.join(", ") : value);
